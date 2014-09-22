@@ -1,0 +1,52 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <Target Name="BeforeBuild">
+    <Exec Command=".bin\npm install" />
+    <Exec Command=".bin\bower install" />
+    <Exec Command=".bin\gulp build --config $(Configuration)"/>
+  </Target>
+  <Target Name="Clean">
+    <!-- delete all the files in the output folder -->
+    <ItemGroup>
+      <_FilesToDelete Remove="@(_FilesToDelete)" />
+      <_FilesToDelete Include="$(OutputPath)**\*" />
+    </ItemGroup>
+    <Message Text="Deleting files: @(_FilesToDelete)" />
+    <Delete Files="@(_FilesToDelete)" />
+  </Target>
+  <Target Name="CollectBowerFiles">
+    <ItemGroup>
+      <_BowerFiles Include="bower_components\**\*" />
+      <FilesForPackagingFromProject Include="%(_BowerFiles.Identity)">
+        <DestinationRelativePath>bower_components\%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <Target Name="CollectBuildFiles">
+    <ItemGroup>
+      <_BuildFiles Include="app\**\*" />
+      <FilesForPackagingFromProject Include="%(_BuildFiles.Identity)">
+        <DestinationRelativePath>app\%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+      CollectBowerFiles;
+      CollectBuildFiles;
+      $(CopyAllFilesToSingleFolderForMsdeployDependsOn);
+    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PipelineCollectFilesPhaseDependsOn>
+      CollectBowerFiles;
+      CollectBuildFiles;
+      $(PipelineCollectFilesPhaseDependsOn);
+    </PipelineCollectFilesPhaseDependsOn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ExcludeFromPackageFolders Include="Scripts">
+      <FromTarget>Project</FromTarget>
+    </ExcludeFromPackageFolders>
+  </ItemGroup>
+</Project>

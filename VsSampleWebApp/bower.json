@@ -1,0 +1,23 @@
+{
+    "name": "VsSampleWebApp",
+    "description": "Sample web application (AngularJS + asp.net Web Api) to illustrate front-end dev with Visual Studio",
+    "version": "0.0.0",
+    "authors": [
+        "Maxime Lemaitre - Cybermaxs"
+    ],
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angularjs": "~1.2.25",
+        "todomvc-common": "~0.1.9",
+        "angular-route": "~1.2.25",
+        "angular-mocks": "~1.2.25"
+    }
+}
