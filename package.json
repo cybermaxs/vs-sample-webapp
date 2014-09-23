@@ -20,10 +20,6 @@
     "yargs": "^1.3.1"
   },
   "scripts": {
-    "postinstall": "VsSampleWebApp\\.bin\\bower.cmd install",
-    "prestart": "VsSampleWebApp\\.bin\\npm.cmd install",
-    "start": "VsSampleWebApp\\.bin\\gulp.cmd gulpfile.js default",
-    "pretest": "VsSampleWebApp\\.bin\\npm.cmd install",
-    "test": "VsSampleWebApp\\.bin\\node.cmd node_modules/karma/bin/karma start test/karma.conf.js --single-run"
+
   }
 }
