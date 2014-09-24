@@ -1,5 +1,5 @@
-# Angular Sample web app
+# Visual Studio Sample Web Application
 
-This is a basic Visual Studio solution including angularjs + asp.net web api.
+Sample web application (AngularJS + asp.net Web Api) to illustrate front-end dev with Visual Studio
 
 Read the introduction post http://cybermaxs.wordpress.com/2014/09/23/front-end-development-with-visual-studio/
